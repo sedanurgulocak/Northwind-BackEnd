@@ -47,4 +47,8 @@ public class ProductsController {
 		return this.productService.getByProductNameAndCategoryId(productName, categoryId);
 	}
 	
+	@GetMapping("/getByProductNameContains")
+	public DataResult<List<Product>> getByProductNameContains(@RequestParam String productName){
+		return this.productService.getByProductNameContains(productName);
+	}
 }
