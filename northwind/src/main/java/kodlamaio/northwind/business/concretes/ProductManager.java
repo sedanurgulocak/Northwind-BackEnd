@@ -3,6 +3,8 @@ package kodlamaio.northwind.business.concretes;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.northwind.business.abstracts.ProductService;
@@ -68,6 +70,13 @@ public class ProductManager implements ProductService{
 	@Override
 	public DataResult<List<Product>> getByNameAndCategory(String productName, int categoryId) {
 		return new SuccessDataResult<List<Product>>(this.productDao.getByNameAndCategory(productName, categoryId), "Data listelendi");
+	}
+
+	@Override
+	public DataResult<List<Product>> getAll(int pageNumber, int pageSize) {
+		
+		Pageable pageable = PageRequest.of(pageNumber-1, pageSize);
+		return new SuccessDataResult<List<Product>>(this.productDao.findAll(pageable).getContent());
 	}
 
 }
