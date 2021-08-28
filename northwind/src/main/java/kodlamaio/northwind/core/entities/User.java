@@ -7,11 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @Table(name="users")
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
 	@Id
@@ -20,6 +24,7 @@ public class User {
 	private int id;
 	
 	@Column(name="email")
+	@Email
 	private String email;
 	
 	@Column(name="password")
